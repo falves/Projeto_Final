@@ -15,6 +15,7 @@
 		55DFC2DA14F30A36001BC6D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DFC2D914F30A36001BC6D6 /* AppDelegate.m */; };
 		55DFC2DD14F30A36001BC6D6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DFC2DB14F30A36001BC6D6 /* MainStoryboard.storyboard */; };
 		55DFC2E014F30A36001BC6D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DFC2DF14F30A36001BC6D6 /* ViewController.m */; };
+		55DFC2E714F30B52001BC6D6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DFC2E614F30B52001BC6D6 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		55DFC2DC14F30A36001BC6D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		55DFC2DE14F30A36001BC6D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		55DFC2DF14F30A36001BC6D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		55DFC2E614F30B52001BC6D6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DFC2E714F30B52001BC6D6 /* MapKit.framework in Frameworks */,
 				55DFC2CA14F30A36001BC6D6 /* UIKit.framework in Frameworks */,
 				55DFC2CC14F30A36001BC6D6 /* Foundation.framework in Frameworks */,
 				55DFC2CE14F30A36001BC6D6 /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +53,7 @@
 		55DFC2BA14F30A36001BC6D6 = {
 			isa = PBXGroup;
 			children = (
+				55DFC2E614F30B52001BC6D6 /* MapKit.framework */,
 				55DFC2CF14F30A36001BC6D6 /* Projeto_Final */,
 				55DFC2C814F30A36001BC6D6 /* Frameworks */,
 				55DFC2C614F30A36001BC6D6 /* Products */,

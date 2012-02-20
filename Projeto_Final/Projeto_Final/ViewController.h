@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController
+#define KM 0.009
+
+@interface ViewController : UIViewController <MKMapViewDelegate>
+{
+    BOOL primeiraPosicao;
+    MKMapView * _mapView;
+}
+
+@property (nonatomic, assign, getter=isPrimeiraPosicao) BOOL primeiraPosicao;
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
 @end
