@@ -20,4 +20,6 @@
 @property (nonatomic, assign, getter=isPrimeiraPosicao) BOOL primeiraPosicao;
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
+- (void) exibeAnnotationComLatitude:(NSString*)latitude ELongitude:(NSString*)longitude EiD:(NSString*)idPonto;
+
 @end

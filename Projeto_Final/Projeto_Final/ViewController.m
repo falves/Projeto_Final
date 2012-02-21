@@ -88,6 +88,49 @@
     if (!self.isPrimeiraPosicao) {
         NSLog(@"Buscar mais pontos");
     }
+    
+    if (ReachableViaWiFi || ReachableViaWWAN) {
+        
+        NSString * enderecoDoWebservice = [NSString stringWithFormat:@"%@/",SERVIDOR];
+        
+        NSString * latitudeMaxima = [NSString stringWithFormat:@"%f", (mapView.region.center.latitude + mapView.region.span.latitudeDelta)];
+        NSString * latitudeMinima = [NSString stringWithFormat:@"%f", (mapView.region.center.latitude - mapView.region.span.latitudeDelta)];
+        
+        NSString * longitudeMaxima = [NSString stringWithFormat:@"%f", (mapView.region.center.longitude - mapView.region.span.longitudeDelta)];
+        NSString * longitudeMinima = [NSString stringWithFormat:@"%f", (mapView.region.center.longitude + mapView.region.span.longitudeDelta)];
+         
+        NSString * enderecoComParametros = [NSString stringWithFormat:@"%@/ConsultaPontosNaArea?latitudeMaxima=%@&latitudeMinima=%@&longitudeMaxima=%@&longitudeMinima=%@",enderecoDoWebservice,latitudeMaxima,latitudeMinima,longitudeMaxima,longitudeMinima];
+        //NSLog(@"%@",enderecoComParametros);
+        
+        NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:enderecoComParametros]];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        
+            if (error) {
+                NSLog(@"Deu erro.");
+                return;
+            }
+            
+            //NSLog(@"Sucesso!");
+            
+            NSDictionary * pontos = [NSJSONSerialization JSONObjectWithData:data options:NSJSONWritingPrettyPrinted error:nil];
+            
+            //NSLog(@"Array - %@",pontos);
+            
+            for (NSDictionary * dict in pontos) {
+                [self exibeAnnotationComLatitude:[dict objectForKey:@"latitude"] ELongitude:[dict objectForKey:@"longitude"] EiD:[dict objectForKey:@"id"]];
+            }
+            
+        }];
+                                         
+    }
+    
+}
+
+#pragma Mark - Metodos Auxiliares
+
+- (void) exibeAnnotationComLatitude:(NSString*)latitude ELongitude:(NSString*)longitude EiD:(NSString*)idPonto {
+    NSLog(@"Recebidos: Latitude = %@, Longitude = %@, id = %@",latitude,longitude,idPonto);
 }
 
 @end
