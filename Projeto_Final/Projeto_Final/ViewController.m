@@ -14,6 +14,7 @@
 @synthesize usuarioLocalizadoPelaPrimeiraVez;
 @synthesize pontosSendoExibidos = _pontosSendoExibidos;
 @synthesize mapView = _mapView;
+@synthesize mapViewDelegate = _mapViewDelegate;
 
 
 - (void)didReceiveMemoryWarning
@@ -30,6 +31,36 @@
     
     self.primeiraPosicao = YES;
     //self.primeiraBuscaDePontos = YES;
+    
+    self.mapViewDelegate = [BUSMapViewDelegate new];
+    [self.mapView setDelegate:self.mapViewDelegate];
+    self.mapViewDelegate.mapView = self.mapView;
+    
+    AnnotationPonto * anotOrigem = [AnnotationPonto new];
+	anotOrigem.title = @"Origem";
+	anotOrigem.subtitle = @"Ponto inicial";
+    anotOrigem.coordinate = CLLocationCoordinate2DMake(-22.960414, -43.205895);
+	
+    AnnotationPonto * anotDestino = [AnnotationPonto new];
+	anotDestino.title = @"Destino";
+	anotDestino.subtitle = @"Ponto final";
+    anotDestino.coordinate = CLLocationCoordinate2DMake(-22.962789, -43.207386);
+
+    
+    [self.mapView addAnnotation:anotOrigem];
+    [self.mapView addAnnotation:anotDestino];
+
+    NSDictionary * ponto1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"-22.960994",@"-43.206705", nil] forKeys:[NSArray arrayWithObjects:@"latitude",@"longitude", nil]];
+    NSDictionary * ponto2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"-22.96211",@"-43.21000", nil] forKeys:[NSArray arrayWithObjects:@"latitude",@"longitude", nil]];
+    NSDictionary * ponto3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"-22.962130",@"-43.207257", nil] forKeys:[NSArray arrayWithObjects:@"latitude",@"longitude", nil]];
+    
+    NSArray * waypoints = [NSArray arrayWithObjects:ponto1,ponto2,ponto3, nil];
+    
+    CLLocationCoordinate2D origem = CLLocationCoordinate2DMake(-22.960414, -43.205895);
+    CLLocationCoordinate2D destino = CLLocationCoordinate2DMake(-22.962789, -43.207386);
+
+    [self.mapViewDelegate exibeRotaDe:origem ate:destino comWaypoints:waypoints];
+    
 }
 
 - (void)viewDidUnload
@@ -69,23 +100,23 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     
-    if (self.isPrimeiraPosicao) {
-        
-        MKCoordinateRegion region;
-        region.center = userLocation.coordinate;  
-        
-        MKCoordinateSpan span; 
-        span.latitudeDelta  = 1 * KM;
-        span.longitudeDelta = 1 * KM; 
-        region.span = span;
-        
-        [self.mapView setRegion:region animated:YES];
-        
-        self.primeiraPosicao = NO;
-        
-        // Utilizamos um delay de 3 segundos para dar tempo do mapa dar um zoom na posicao encontrada
-        [self performSelector:@selector(buscaPontosNoMapaExibido) withObject:nil afterDelay:3];
-    }
+//    if (self.isPrimeiraPosicao) {
+//        
+//        MKCoordinateRegion region;
+//        region.center = userLocation.coordinate;  
+//        
+//        MKCoordinateSpan span; 
+//        span.latitudeDelta  = 1 * KM;
+//        span.longitudeDelta = 1 * KM; 
+//        region.span = span;
+//        
+//        [self.mapView setRegion:region animated:YES];
+//        
+//        self.primeiraPosicao = NO;
+//        
+//        // Utilizamos um delay de 3 segundos para dar tempo do mapa dar um zoom na posicao encontrada
+//        [self performSelector:@selector(buscaPontosNoMapaExibido) withObject:nil afterDelay:3];
+//    }
     
 }
 

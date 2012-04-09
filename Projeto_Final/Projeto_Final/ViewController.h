@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "AnnotationPonto.h"
+#import "BUSMapViewDelegate.h"
 
 #define KM 0.009
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, assign, getter=isUsuarioLocalizadoPelaPrimeiraVez) BOOL usuarioLocalizadoPelaPrimeiraVez;
 @property (nonatomic, strong) NSMutableArray *pontosSendoExibidos;
+@property (nonatomic, strong) BUSMapViewDelegate * mapViewDelegate;
 
 - (void) exibeAnnotationComLatitude:(NSString*)latitude ELongitude:(NSString*)longitude EiD:(NSString*)idPonto;
 - (void) buscaPontosNoMapaExibido;
