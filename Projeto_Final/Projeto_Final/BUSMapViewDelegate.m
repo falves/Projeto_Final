@@ -46,6 +46,27 @@
 	
 }
 
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation{
+    
+    static NSString *identificador = @"OnibusAnnotationIdentifier";
+    
+    if([annotation isKindOfClass:[AnnotationPonto class]]){
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:identificador];
+        if (pinView ==nil) {
+            
+            pinView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:identificador];
+            pinView.pinColor = MKPinAnnotationColorGreen;
+            pinView.animatesDrop = YES;
+            
+        } 
+        return pinView;
+    }
+    
+    
+    
+    return nil;
+}
+
 #pragma Mark - Metodos Auxiliares
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {

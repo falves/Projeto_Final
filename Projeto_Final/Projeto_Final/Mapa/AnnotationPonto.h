@@ -15,11 +15,15 @@
     NSString                * title;
     NSString                * subtitle;
     NSString                * idPonto;
+    BOOL                    inicio;
+    BOOL                    fim;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) NSString *idPonto;
+@property (nonatomic, assign, getter=isInicio) BOOL inicio;
+@property (nonatomic, assign, getter=isFim) BOOL fim;
 
 @end

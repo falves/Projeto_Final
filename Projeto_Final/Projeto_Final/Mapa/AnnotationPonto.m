@@ -14,6 +14,7 @@
 @synthesize title;
 @synthesize subtitle;
 @synthesize idPonto;
-
+@synthesize inicio;
+@synthesize fim;
 
 @end
